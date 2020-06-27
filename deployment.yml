@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: webserver
+ labels:
+   web: testing
+spec:
+  selector:
+   matchLabels:
+      web: testing
+  strategy:
+    type: Recreate
+  template:
+     metadata:
+        labels:
+           web: testing
+     spec:
+       containers:
+       - image: vimal13/apache-webserver-php
+         name: webserver
+         ports:
+         - containerPort: 80
+           name: webserver
+         volumeMounts:
+         - name: webserver-persistent-storage
+           mountPath: /var/www/html/
+       volumes:
+       - name: webserver-persistent-storage
+         persistentVolumeClaim: 
+           claimName: webpvc
+     
