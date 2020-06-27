@@ -16,7 +16,7 @@ spec:
            web: testing
      spec:
        containers:
-       - image: vimal13/apache-webserver-php
+       - image: aady12/httpd
          name: webserver
          ports:
          - containerPort: 80
